@@ -55,7 +55,7 @@ module ImpactRadiusAPI
       timeout = ImpactRadiusAPI.api_timeout
 
       @resource ||= self.xml_field(resource_url.match(/\/[a-z]+(\?|\z)/i)[0].gsub("/","").gsub("?",""))
-      
+
       begin
         response = self.class.get(resource_url, query: params, timeout: timeout)
       rescue Timeout::Error
@@ -67,21 +67,11 @@ module ImpactRadiusAPI
     private
 
     def process(response)
-
-      case response.code
-      when 200, 201, 204
-        APIResponse.new(response, @resource)
-      when 400, 404
-        raise InvalidRequestError.new(response["ImpactRadiusResponse"]["Message"], response.code)
-      when 401
-        raise AuthenticationError.new(response.body, response.code)
-      else
-        raise Error.new(response["ImpactRadiusResponse"]["Message"], response.code)
-      end
+      raise NotImplementedError.new("APIResource is an abstract class. You should perform actions on its subclasses (i.e. Publisher)")
     end
 
     def pre_uri
-      if %w(Ads PromotionalAds ActionInquiries Campaigns Acitons).include? @resource
+      if %w(Ads PromotionalAds ActionInquiries Campaigns Acitons Conversions).include? @resource
         ""
       else
         "product."

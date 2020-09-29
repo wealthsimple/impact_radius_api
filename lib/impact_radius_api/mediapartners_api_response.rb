@@ -1,5 +1,5 @@
 module ImpactRadiusAPI
-  class APIResponse
+  class MediaPartnersApiResponse
     attr_reader :data, :request, :page, :num_pages, :page_size
 
     def initialize(response, resource)
@@ -14,7 +14,7 @@ module ImpactRadiusAPI
     def all
       page = @page
       num_pages = @num_pages
-      
+
       while num_pages > page
         uri = Addressable::URI.parse(request.uri)
         class_name = uri.path.match(/^\/[a-z]+\//i)[0].gsub("/","")

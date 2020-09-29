@@ -7,9 +7,10 @@ require "recursive_open_struct"
 require "uri"
 
 require "impact_radius_api/api_resource"
-require "impact_radius_api/api_response"
+require "impact_radius_api/mediapartners_api_response"
 require "impact_radius_api/version"
 require "impact_radius_api/mediapartners"
+require "impact_radius_api/advertisers"
 
 require "impact_radius_api/errors/error"
 require "impact_radius_api/errors/authentication_error"
@@ -21,7 +22,7 @@ module ImpactRadiusAPI
   @api_base_uri = "api.impactradius.com"
   @api_timeout = 30
 
-  class << self 
+  class << self
   	attr_accessor :api_base_uri, :account_sid, :auth_token, :api_version
   	attr_reader :api_timeout
   end

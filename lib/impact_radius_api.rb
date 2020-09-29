@@ -7,9 +7,9 @@ require "recursive_open_struct"
 require "uri"
 
 require "impact_radius_api/api_resource"
-require "impact_radius_api/mediapartners_api_response"
 require "impact_radius_api/version"
 require "impact_radius_api/mediapartners"
+require "impact_radius_api/mediapartners_api_response"
 require "impact_radius_api/advertisers"
 
 require "impact_radius_api/errors/error"
